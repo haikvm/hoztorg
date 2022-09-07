@@ -1,6 +1,6 @@
 $.Class('CCONNECT', {
 	init: function() {
-		this.url = 'https://tkyarmarka.com/app/api.php';
+		this.url = 'https://xn--52-6kcdf1ba5ao3byb5dwce.xn--p1ai/app/api.php';
 		this.version = '2.1.0';
 		this.appOnline = true;
 		this.onConnectBefore = new Event('onConnectBefore');
@@ -77,9 +77,6 @@ $.Class('CCONNECT', {
 									beforeSend: function() {
 										cl.beforeSend();
 									},
-                  xhrFields: {
-                    withCredentials: true
-                  },
 									xhr: function() {
 										var xhr = new window.XMLHttpRequest();
 										xhr.addEventListener("progress", function(evt){
@@ -110,8 +107,8 @@ $.Class('CCONNECT', {
 											cl.events.onAfterConnect(response, function (response) {
 												if (response) {
 													success(response);
-													if (request != 'preload_resources' && request != '/user/authorize') {
-														//db.saveData(hash, response);
+													if (request != 'preload_resources' && request != 'get_db_items' && request != 'get_main' && request != '/user/authorize') {
+														db.saveData(hash, response);
 													}
 												} else {
 													success(res.data);
